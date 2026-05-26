@@ -1,0 +1,174 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Capitask - Desarrollo Web, Apps Móviles y Automatización con IA" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body class="bg-slate-950 text-slate-50 min-h-screen overflow-x-hidden font-sans selection:bg-orange-500/30 antialiased">
+		
+		<!-- Preloader Premium -->
+		<div id="preloader" class="fixed inset-0 z-[100] bg-slate-950 flex flex-col justify-center items-center transition-all duration-700 ease-in-out">
+			<div class="relative flex flex-col items-center gap-6">
+				<!-- Pulsing Logo Image -->
+				<div class="relative flex items-center justify-center">
+					<span class="animate-ping absolute inline-flex h-24 w-24 rounded-full bg-orange-500/10 opacity-75"></span>
+					<img src="/logoss.png" alt="Capitask Logo" class="h-20 w-auto object-contain filter drop-shadow-[0_0_20px_rgba(249,115,22,0.6)] animate-pulse relative z-10" />
+				</div>
+				<div class="flex flex-col items-center">
+					<span class="text-xs text-orange-500 font-mono tracking-widest mt-2">Cargando experiencia...</span>
+				</div>
+			</div>
+		</div>
+
+		<!-- Interactive Plexus Particle Canvas Background (Reacts to Mouse & Scroll) -->
+		<canvas id="plexus-bg" class="fixed inset-0 z-[-2] pointer-events-none opacity-40"></canvas>
+
+		<!-- Mesh Gradient Background Animado -->
+		<div class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
+			<!-- Blobs de color flotantes -->
+			<div class="absolute -top-[15%] -left-[10%] w-[55vw] h-[55vw] max-w-[650px] max-h-[650px] rounded-full bg-orange-600/10 blur-[120px] mix-blend-screen animate-blob"></div>
+			<div class="absolute top-[25%] -right-[10%] w-[45vw] h-[45vw] max-w-[550px] max-h-[550px] rounded-full bg-orange-500/8 blur-[100px] mix-blend-screen animate-blob animate-delay-2000"></div>
+			<div class="absolute -bottom-[20%] left-[15%] w-[65vw] h-[65vw] max-w-[750px] max-h-[750px] rounded-full bg-slate-800/30 blur-[140px] mix-blend-screen animate-blob animate-delay-4000"></div>
+		</div>
+
+		<slot />
+
+		<!-- Script para Preloader, Canvas y Animaciones On-Scroll -->
+		<script>
+			// 1. Preloader logic
+			window.addEventListener('load', () => {
+				const preloader = document.getElementById('preloader');
+				if (preloader) {
+					preloader.classList.add('opacity-0', 'pointer-events-none');
+					setTimeout(() => {
+						preloader.style.display = 'none';
+					}, 700);
+				}
+			});
+
+			// 2. Interactive Plexus Canvas Background
+			const canvas = document.getElementById('plexus-bg') as HTMLCanvasElement;
+			if (canvas) {
+				const ctx = canvas.getContext('2d');
+				let particles: Array<{ x: number; y: number; vx: number; vy: number; radius: number }> = [];
+				const particleCount = window.innerWidth < 768 ? 40 : 90;
+				const connectionDistance = 120;
+				let mouse = { x: -1000, y: -1000 };
+
+				const resize = () => {
+					canvas.width = window.innerWidth;
+					canvas.height = window.innerHeight;
+				};
+
+				window.addEventListener('resize', resize);
+				resize();
+
+				// Initialize particles
+				for (let i = 0; i < particleCount; i++) {
+					particles.push({
+						x: Math.random() * canvas.width,
+						y: Math.random() * canvas.height,
+						vx: (Math.random() - 0.5) * 0.4,
+						vy: (Math.random() - 0.5) * 0.4,
+						radius: Math.random() * 1.5 + 1
+					});
+				}
+
+				// Track mouse
+				window.addEventListener('mousemove', (e) => {
+					mouse.x = e.clientX;
+					mouse.y = e.clientY;
+				});
+
+				window.addEventListener('mouseleave', () => {
+					mouse.x = -1000;
+					mouse.y = -1000;
+				});
+
+				const draw = () => {
+					if (!ctx) return;
+					ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+					// Draw particles
+					particles.forEach((p) => {
+						p.x += p.vx;
+						p.y += p.vy;
+
+						// Boundary collision
+						if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+						if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+						ctx.beginPath();
+						ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+						ctx.fillStyle = 'rgba(249, 115, 22, 0.4)';
+						ctx.fill();
+					});
+
+					// Draw connecting lines
+					for (let i = 0; i < particles.length; i++) {
+						for (let j = i + 1; j < particles.length; j++) {
+							const p1 = particles[i];
+							const p2 = particles[j];
+							const dist = Math.hypot(p1.x - p2.x, p1.y - p2.y);
+
+							if (dist < connectionDistance) {
+								const alpha = (1 - dist / connectionDistance) * 0.15;
+								ctx.beginPath();
+								ctx.moveTo(p1.x, p1.y);
+								ctx.lineTo(p2.x, p2.y);
+								ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
+								ctx.lineWidth = 0.5;
+								ctx.stroke();
+							}
+						}
+
+						// Connect to mouse
+						const distToMouse = Math.hypot(particles[i].x - mouse.x, particles[i].y - mouse.y);
+						if (distToMouse < 150) {
+							const alpha = (1 - distToMouse / 150) * 0.25;
+							ctx.beginPath();
+							ctx.moveTo(particles[i].x, particles[i].y);
+							ctx.lineTo(mouse.x, mouse.y);
+							ctx.strokeStyle = `rgba(249, 115, 22, ${alpha})`;
+							ctx.lineWidth = 0.8;
+							ctx.stroke();
+						}
+					}
+
+					requestAnimationFrame(draw);
+				};
+
+				draw();
+			}
+
+			// 3. Scroll intersection animations with custom delays and scales
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						entry.target.classList.add('opacity-100', 'translate-y-0', 'scale-100');
+						entry.target.classList.remove('opacity-0', 'translate-y-10', 'scale-95');
+					}
+				});
+			}, { threshold: 0.1 });
+
+			document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+				el.classList.add('opacity-0', 'translate-y-10', 'scale-95', 'transition-all', 'duration-1000', 'ease-out');
+				observer.observe(el);
+			});
+		</script>
+	</body>
+</html>

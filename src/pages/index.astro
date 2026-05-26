@@ -1,0 +1,784 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Servicios actualizados enfocados en Laravel, PHP, Vue, Nuxt y Mobile
+const services = [
+  {
+    title: "Desarrollo Web Fullstack",
+    description: "Interfaces interactivas y robustas creadas con HTML, CSS, JavaScript, Bootstrap, Vue.js y Nuxt.js, enfocadas en la experiencia de usuario y SEO.",
+    tag: "Vue.js / Nuxt.js / Bootstrap",
+    stats: "Carga < 0.5s",
+    mockType: "code",
+    iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-orange-500 group-hover:scale-110 transition-transform duration-300"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0V12a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 12V5.25" /></svg>`
+  },
+  {
+    title: "Desarrollo Backend & APIs",
+    description: "Construcción y consumo de APIs RESTful de alto rendimiento usando Laravel y PHP, conectadas a bases de datos seguras y escalables.",
+    tag: "Laravel / PHP / REST APIs",
+    stats: "Seguridad Robusta",
+    mockType: "nodes",
+    iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-orange-500 group-hover:scale-110 transition-transform duration-300"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21M6.75 6.75h10.5a2.25 2.25 0 0 1 2.25 2.25v10.5a2.25 2.25 0 0 1-2.25 2.25H6.75A2.25 2.25 0 0 1 4.5 19V9a2.25 2.25 0 0 1 2.25-2.25Z" /></svg>`
+  },
+  {
+    title: "Desarrollo Mobile",
+    description: "Aplicaciones móviles interactivas de alto rendimiento optimizadas para dispositivos Android e iOS con diseño moderno e intuitivo.",
+    tag: "iOS & Android / UX-UI",
+    stats: "99.9% Estabilidad",
+    mockType: "chart",
+    iconSvg: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-orange-500 group-hover:scale-110 transition-transform duration-300"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-6 18.75h9" /></svg>`
+  }
+];
+
+// Proyectos Reales Solicitados
+const projects = [
+  {
+    title: "Trono de Gracia",
+    category: "Comunidad & Contenido",
+    desc: "Plataforma de difusión eclesial de la Iglesia Bautista Reformada Trono de Gracia, con biblioteca de sermones y diseño responsivo premium.",
+    techs: ["Astro", "Tailwind CSS", "Markdown"],
+    metrics: { label: "Carga Inicial", value: "98/100" },
+    image: "/trono.png",
+    url: "https://ibrtronodegracia.org/"
+  },
+  {
+    title: "BOIA Repuestos",
+    category: "E-Commerce & Catálogo",
+    desc: "Portal oficial de repuestos y partes para motocicletas en Venezuela, integrando catálogo digital autogestionable y buscador rápido.",
+    techs: ["React", "PHP", "MySQL", "Tailwind CSS"],
+    metrics: { label: "Catálogo Activo", value: "5,000+ Items" },
+    image: "/boia.png",
+    url: "https://boia.com.ve"
+  },
+  {
+    title: "Numisfila",
+    category: "Coleccionismo & Subastas",
+    desc: "Portal numismático y filatélico de referencia. Exposición y catalogación de monedas antiguas, billetes e historia postal.",
+    techs: ["Astro", "Tailwind CSS", "Node.js"],
+    metrics: { label: "Rarezas Catalogadas", value: "1,200+" },
+    image: "/numisfila.png",
+    url: "https://numisfila.com"
+  },
+  {
+    title: "Reforma TV",
+    category: "Streaming & Multimedia",
+    desc: "Plataforma de distribución multimedia de teología reformada. Sistema optimizado de reproducción de video en alta definición.",
+    techs: ["Next.js", "Vimeo API", "Tailwind CSS"],
+    metrics: { label: "Horas de Video", value: "350+ Hrs" },
+    image: "/reformatv.png",
+    url: "https://reformatv.net"
+  },
+  {
+    title: "GINEP Clinica",
+    category: "Salud & Agendamiento",
+    desc: "Sitio corporativo y portal médico del Centro Ginecológico Obstétrico GINEP. Gestión de consultas e información para el cuidado ginecológico.",
+    techs: ["WordPress", "React", "Sass"],
+    metrics: { label: "Citas Procesadas", value: "15k+ Anuales" },
+    image: "/ginep.png",
+    url: "https://ginep.net"
+  },
+  {
+    title: "Rulemanes Industriales",
+    category: "Industria & Distribución",
+    desc: "Catálogo y distribuidora de rulemanes y componentes de transmisión industrial en Uruguay. Localizador ágil de repuestos de precisión.",
+    techs: ["Next.js", "Tailwind CSS", "PostgreSQL"],
+    metrics: { label: "Disponibilidad", value: "99.9%" },
+    image: "/rulemanes.png",
+    url: "https://rulemanesindustriales.com.uy/"
+  }
+];
+
+// Pasos de nuestra metodología de trabajo
+const steps = [
+  { num: "01", name: "Descubrimiento", desc: "Analizamos tus procesos actuales y necesidades críticas para definir el alcance óptimo." },
+  { num: "02", name: "Arquitectura & UX", desc: "Diseñamos la estructura técnica escalable y los prototipos interactivos premium." },
+  { num: "03", name: "Desarrollo Ágil", desc: "Programamos con código limpio, pruebas exhaustivas y entregas iterativas continuas." },
+  { num: "04", name: "Optimización & Lanzamiento", desc: "Desplegamos en entornos cloud de alto rendimiento y configuramos analítica." }
+];
+
+// Testimonios de clientes reales
+const testimonials = [
+  {
+    name: "Dr. Carlos Mendoza",
+    role: "Director de GINEP Clínica",
+    text: "La digitalización de nuestro portal médico de la mano de Capitask transformó completamente nuestra gestión de pacientes. Su soporte y código limpio son inigualables.",
+    avatarSvg: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12 text-orange-500/70"><path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /></svg>`
+  },
+  {
+    name: "Alberto Silva",
+    role: "Administrador de Rulemanes Industriales",
+    text: "Pusieron en marcha nuestro catálogo industrial en Uruguay en tiempo récord. El buscador inteligente funciona al instante y la velocidad de carga es increíble.",
+    avatarSvg: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12 text-orange-500/70"><path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /></svg>`
+  },
+  {
+    name: "Mariana Ortega",
+    role: "Co-fundadora de Numisfila",
+    text: "Capitask entendió perfectamente lo que buscábamos. Nuestra base de datos y la velocidad del catálogo son impecables. Recomendados 100%.",
+    avatarSvg: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12 text-orange-500/70"><path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /></svg>`
+  }
+];
+
+// Stack Tecnológico
+const techStack = [
+  "Laravel", "PHP", "Vue.js", "Nuxt.js", "PostgreSQL", "Supabase", "MySQL", "APIs RESTful", "HTML", "CSS", "JavaScript", "Bootstrap"
+];
+
+// Preguntas frecuentes
+const faqs = [
+  { q: "¿En cuánto tiempo entregan un MVP?", a: "Típicamente entre 4 a 6 semanas, dependiendo de la complejidad de la arquitectura y las integraciones requeridas." },
+  { q: "¿Cómo aseguran la escalabilidad del software?", a: "Diseñamos microservicios con arquitecturas serverless o contenedores Docker en plataformas cloud como AWS y Google Cloud, garantizando redundancia y auto-escalado." },
+  { q: "¿Qué tecnologías utilizan principalmente?", a: "Nuestro stack principal incluye Astro y Next.js para Frontend, Node.js, Python y Go en Backend, y Postgres, Redis y Clickhouse para persistencia de datos." }
+];
+---
+
+<Layout title="Capitask | Desarrollo de Software Extraordinario y Automatización IA">
+	<!-- Noise Background global -->
+	<div class="fixed inset-0 bg-noise z-[-2] pointer-events-none opacity-40"></div>
+
+	<!-- Navbar Premium (Liquid Glass) -->
+	<header class="fixed top-0 left-0 w-full z-50 px-6 py-6 transition-all duration-300">
+		<div class="max-w-7xl mx-auto glass-card rounded-2xl px-8 py-4 flex justify-between items-center border border-white/10 bg-slate-950/30 backdrop-blur-2xl">
+			<!-- Logo Capitask con logoss.png -->
+			<a href="#" class="flex items-center gap-3 font-extrabold text-2xl tracking-tight text-white group">
+				<img src="/logoss.png" alt="Capitask Logo" class="h-10 w-auto object-contain filter drop-shadow-[0_0_8px_rgba(249,115,22,0.4)] transition-transform duration-300 group-hover:rotate-12" />
+			</a>
+
+			<nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+				<a href="#nosotros" class="hover:text-orange-400 transition-colors duration-200">Sobre Nosotros</a>
+				<a href="#servicios" class="hover:text-orange-400 transition-colors duration-200">Servicios</a>
+				<a href="#proyectos" class="hover:text-orange-400 transition-colors duration-200">Nuestros Proyectos</a>
+				<a href="#metodologia" class="hover:text-orange-400 transition-colors duration-200">Método</a>
+				<a href="#faqs" class="hover:text-orange-400 transition-colors duration-200">FAQs</a>
+				<a href="#contacto" class="hover:text-orange-400 transition-colors duration-200">Contacto</a>
+			</nav>
+
+			<div class="flex items-center gap-4">
+				<a href="#contacto" class="btn-shine-container px-6 py-3 rounded-xl bg-orange-500 text-slate-950 font-bold text-sm hover:shadow-[0_0_30px_rgba(249,115,22,0.45)] hover:scale-[1.03] active:scale-95 transition-all duration-300 ease-out">
+					<span class="btn-shine-effect relative z-10">Iniciar Proyecto</span>
+				</a>
+			</div>
+		</div>
+	</header>
+
+	<main class="max-w-7xl mx-auto px-6 pt-40 pb-24 flex flex-col gap-40">
+		
+		<!-- Hero Section Premium + Editor de Código -->
+		<section class="min-h-[85vh] grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative py-12 animate-on-scroll">
+			<div class="absolute top-[10%] w-[300px] h-[300px] bg-orange-500/5 rounded-full blur-[80px] pointer-events-none"></div>
+
+			<!-- Columna Izquierda: Información -->
+			<div class="lg:col-span-7 flex flex-col items-start text-left">
+				<div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full glass-card text-xs text-orange-400 mb-8 border border-orange-500/30 font-medium bg-orange-500/5 shadow-[0_0_15px_rgba(249,115,22,0.1)]">
+					<span class="relative flex h-2 w-2">
+					  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+					  <span class="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
+					</span>
+					Desarrollo de Software de Alta Gama
+				</div>
+				
+				<h1 class="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight mb-8 leading-[1.05] text-white">
+					Ingeniería de Software de <br />
+					<span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-400 to-orange-600 drop-shadow-[0_2px_20px_rgba(249,115,22,0.2)]">
+						Siguiente Generación
+					</span>
+				</h1>
+				
+				<p class="text-lg md:text-xl text-slate-300 mb-10 leading-relaxed font-light">
+					Soluciones web avanzadas y aplicaciones móviles de alto rendimiento. Especialistas en Laravel, Vue, Nuxt e integración de APIs.
+				</p>
+				
+				<div class="flex flex-col sm:flex-row gap-5 z-10 w-full sm:w-auto">
+					<a href="#contacto" class="btn-shine-container text-center px-8 py-4 rounded-xl bg-gradient-to-r from-orange-500 via-orange-600 to-amber-600 text-white font-extrabold hover:shadow-[0_0_35px_rgba(249,115,22,0.6)] hover:scale-[1.05] active:scale-95 transition-all duration-300">
+						<span class="btn-shine-effect">Cotizar Proyecto</span>
+					</a>
+					<a href="#proyectos" class="px-8 py-4 rounded-xl text-center glass-card text-slate-200 font-semibold border border-white/10 hover:glass-card-hover hover:scale-[1.05] active:scale-95 transition-all duration-300">
+						Ver Casos de Éxito
+					</a>
+				</div>
+			</div>
+
+			<!-- Columna Derecha: Editor de Código Premium con Efecto Float -->
+			<div class="lg:col-span-5 w-full flex justify-center animate-float">
+				<div class="w-full max-w-[500px] glass-card rounded-2xl border border-white/10 shadow-2xl overflow-hidden relative group/editor">
+					<div class="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-transparent pointer-events-none"></div>
+					<div class="flex justify-between items-center bg-slate-900/60 px-4 py-3 border-b border-white/5">
+						<div class="flex gap-2">
+							<span class="w-3 h-3 rounded-full bg-red-500/70"></span>
+							<span class="w-3 h-3 rounded-full bg-yellow-500/70"></span>
+							<span class="w-3 h-3 rounded-full bg-green-500/70"></span>
+						</div>
+						<span class="text-xs font-mono text-slate-400">src/components/Capitask.ts</span>
+						<span class="w-4 h-4"></span>
+					</div>
+					<div class="p-6 font-mono text-xs md:text-sm text-slate-300 overflow-x-auto leading-relaxed bg-slate-950/40">
+						<div><span class="text-pink-500">import</span> &#123; <span class="text-blue-400">Laravel</span>, <span class="text-blue-400">Vue</span>, <span class="text-blue-400">Nuxt</span> &#125; <span class="text-pink-500">from</span> <span class="text-emerald-400">'@capitask/core'</span>;</div>
+						<div class="text-slate-600">// Configuración de Capitask Engine</div>
+						<div><span class="text-pink-500">const</span> <span class="text-yellow-400">company</span> = &#123;</div>
+						<div class="pl-4">name: <span class="text-emerald-400">"Capitask"</span>,</div>
+						<div class="pl-4">focus: <span class="text-emerald-400">"Desarrollo Premium"</span>,</div>
+						<div class="pl-4">databases: [<span class="text-emerald-400">"PostgreSQL"</span>, <span class="text-emerald-400">"MySQL"</span>, <span class="text-emerald-400">"Supabase"</span>]</div>
+						<div>&#125;;</div>
+						<div class="my-2"></div>
+						<div><span class="text-pink-500">async function</span> <span class="text-blue-400">desplegar</span>() &#123;</div>
+						<div class="pl-4"><span class="text-pink-500">await</span> <span class="text-blue-400">Laravel</span>.<span class="text-yellow-400">buildAPIs</span>();</div>
+						<div class="pl-4"><span class="text-pink-500">await</span> <span class="text-blue-400">Vue</span>.<span class="text-yellow-400">renderLiquidGlass</span>();</div>
+						<div class="pl-4"><span class="text-blue-400">console</span>.<span class="text-yellow-400">log</span>(<span class="text-emerald-400">"🚀 Plataforma en línea!"</span>);</div>
+						<div>&#125;</div>
+						<div class="my-2"></div>
+						<div class="text-orange-500 font-bold animate-pulse">&gt; desplegar();</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Indicador animado de scroll -->
+			<div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 opacity-60">
+				<span class="text-[10px] font-mono tracking-widest text-slate-400 uppercase">Scroll</span>
+				<div class="w-5 h-8 rounded-full border border-slate-500 flex justify-center p-1.5">
+					<div class="w-1 h-1.5 rounded-full bg-orange-500 animate-scroll-dot"></div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Quick Stats Grid -->
+		<section class="grid grid-cols-2 md:grid-cols-4 gap-6 w-full max-w-7xl mx-auto -mt-20 animate-on-scroll">
+			{[
+				{ val: "99.9%", desc: "Disponibilidad SLA" },
+				{ val: "10x", desc: "Velocidad de Carga" },
+				{ val: "+80%", desc: "Productividad con IA" },
+				{ val: "+20", desc: "Sistemas Integrados" }
+			].map(stat => (
+				<div class="glass-card px-6 py-8 rounded-2xl hover:glass-card-hover transition-all duration-300 border border-white/5 bg-slate-900/10 text-center">
+					<div class="text-3xl md:text-4xl font-extrabold text-white mb-2 bg-gradient-to-r from-orange-400 to-amber-500 bg-clip-text text-transparent">{stat.val}</div>
+					<div class="text-xs md:text-sm text-slate-400 font-medium tracking-wide uppercase">{stat.desc}</div>
+				</div>
+			))}
+		</section>
+
+		<!-- Sección: Sobre Nosotros, Misión, Visión -->
+		<section id="nosotros" class="scroll-mt-28 animate-on-scroll">
+			<div class="text-center max-w-3xl mx-auto mb-20">
+				<div class="text-orange-500 font-bold text-xs uppercase tracking-widest mb-3">Nuestra Esencia</div>
+				<h2 class="text-3xl md:text-5xl font-black tracking-tight text-white mb-4">
+					Sobre Nosotros
+				</h2>
+				<p class="text-slate-400 text-lg">
+					Conoce el propósito, dirección y valores que guían cada uno de nuestros desarrollos.
+				</p>
+			</div>
+
+			<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+				<!-- Quiénes Somos -->
+				<div class="glass-card p-8 rounded-3xl hover:glass-card-hover transition-all duration-500 relative overflow-hidden group">
+					<div class="absolute -top-12 -right-12 w-24 h-24 bg-orange-500/5 rounded-full blur-xl"></div>
+					<div class="text-orange-500 mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.109A9.342 9.342 0 0 1 12.24 21c-1.11-.274-2.143-.754-3.045-1.416M19.5 7.5c.047.58-.195 1.17-.6 1.6m.6-1.6a3 3 0 0 0-3-3m3 3a3 3 0 0 1-3 3m0 0a3 3 0 0 1-3-3m3 3v-.375c0-1.11-.285-2.16-.786-3.07m-.786 3.07a9.37 9.37 0 0 1-4.093-3.414M3 16.275a8.82 8.82 0 0 0 5.25 1.63M3 16.275a8.82 8.82 0 0 1 5.25-1.63m-5.25 0A8.82 8.82 0 0 1 3 13.025m0 3.25a8.82 8.82 0 0 0 5.25 1.63" />
+						</svg>
+					</div>
+					<h3 class="text-2xl font-bold text-white mb-4 group-hover:text-orange-400 transition-colors">¿Quiénes Somos?</h3>
+					<p class="text-slate-400 leading-relaxed text-sm">
+						Somos un equipo especializado en el desarrollo e integración de software a medida, enfocados en prestigiosas soluciones web fullstack, APIs de alta velocidad con Laravel y aplicaciones móviles responsivas. Trabajamos codo con codo con empresas para materializar sus ideas.
+					</p>
+				</div>
+
+				<!-- Misión -->
+				<div class="glass-card p-8 rounded-3xl hover:glass-card-hover transition-all duration-500 relative overflow-hidden group">
+					<div class="absolute -top-12 -right-12 w-24 h-24 bg-orange-500/5 rounded-full blur-xl"></div>
+					<div class="text-orange-500 mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
+						</svg>
+					</div>
+					<h3 class="text-2xl font-bold text-white mb-4 group-hover:text-orange-400 transition-colors">Nuestra Misión</h3>
+					<p class="text-slate-400 leading-relaxed text-sm">
+						Proveer soluciones tecnológicas robustas, optimizadas y funcionales. Diseñamos con código limpio, bases de datos eficientes como PostgreSQL y MySQL, y la versatilidad de frameworks líderes (Laravel y Vue.js) con el fin de simplificar procesos y automatizar flujos.
+					</p>
+				</div>
+
+				<!-- Visión -->
+				<div class="glass-card p-8 rounded-3xl hover:glass-card-hover transition-all duration-500 relative overflow-hidden group">
+					<div class="absolute -top-12 -right-12 w-24 h-24 bg-orange-500/5 rounded-full blur-xl"></div>
+					<div class="text-orange-500 mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+							<path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+						</svg>
+					</div>
+					<h3 class="text-2xl font-bold text-white mb-4 group-hover:text-orange-400 transition-colors">Nuestra Visión</h3>
+					<p class="text-slate-400 leading-relaxed text-sm">
+						Convertirnos en el socio tecnológico boutique referente del desarrollo de software. Lideramos la transición hacia aplicaciones modulares e interactivas, estableciendo estándares de excelencia técnica en arquitecturas Backend con Laravel.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- Grid de Servicios con Heroicons -->
+		<section id="servicios" class="scroll-mt-28 animate-on-scroll">
+			<div class="text-center max-w-3xl mx-auto mb-20">
+				<div class="text-orange-500 font-bold text-xs uppercase tracking-widest mb-3">Qué Hacemos</div>
+				<h2 class="text-3xl md:text-5xl font-black tracking-tight text-white mb-4">
+					Servicios Tecnológicos de Vanguardia
+				</h2>
+				<p class="text-slate-400 text-lg">
+					Diseño arquitectónico avanzado y desarrollo ágil para soluciones escalables.
+				</p>
+			</div>
+			
+			<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+				{services.map(service => (
+					<div class="glass-card p-8 rounded-3xl hover:glass-card-hover hover:-translate-y-2.5 transition-all duration-500 group relative overflow-hidden flex flex-col justify-between min-h-[500px]">
+						<div class="absolute inset-0 bg-gradient-to-br from-orange-500/8 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+						
+						<div>
+							<div class="flex justify-between items-start mb-8">
+								<div class="text-3xl bg-slate-900/80 w-16 h-16 rounded-2xl flex items-center justify-center border border-white/10 group-hover:scale-110 group-hover:border-orange-500/40 transition-all duration-300 shadow-xl" set:html={service.iconSvg}>
+								</div>
+								<span class="text-[11px] font-mono font-semibold px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 animate-pulse">
+									{service.stats}
+								</span>
+							</div>
+							
+							<span class="text-[10px] font-mono tracking-widest uppercase text-slate-500 block mb-2">{service.tag}</span>
+							<h3 class="text-2xl font-bold mb-4 text-white group-hover:text-orange-400 transition-colors">
+								{service.title}
+							</h3>
+							
+							<p class="text-slate-400 leading-relaxed text-sm mb-6">
+								{service.description}
+							</p>
+						</div>
+
+						<div class="mt-4 p-4 rounded-xl bg-slate-950/60 border border-white/5 relative overflow-hidden h-40 flex items-center justify-center">
+							{service.mockType === 'code' && (
+								<div class="w-full font-mono text-[10px] text-slate-500 flex flex-col gap-2">
+									<div class="flex justify-between border-b border-white/5 pb-1">
+										<span class="text-orange-400">VueComponent.vue</span>
+										<span class="text-slate-600">vue init</span>
+									</div>
+									<div class="text-slate-300">&lt;<span class="text-orange-500">template</span>&gt;</div>
+									<div class="pl-4 text-slate-400">&lt;<span class="text-orange-500">div</span> <span class="text-amber-500">class</span>=<span class="text-emerald-400">"nuxt-app"</span>&gt;&lcub;&lcub; message &rcub;&rcub;&lt;/<span class="text-orange-500">div</span>&gt;</div>
+									<div class="text-slate-300">&lt;/<span class="text-orange-500">template</span>&gt;</div>
+								</div>
+							)}
+
+							{service.mockType === 'nodes' && (
+								<div class="w-full font-mono text-[10px] text-slate-500 flex flex-col gap-2">
+									<div class="flex justify-between border-b border-white/5 pb-1">
+										<span class="text-orange-400">api.php (Laravel)</span>
+										<span class="text-slate-600">route list</span>
+									</div>
+									<div class="text-slate-300"><span class="text-orange-500">Route</span>::<span class="text-yellow-400">get</span>(<span class="text-emerald-400">'/v1/user'</span>, [UserController::<span class="text-orange-400">class</span>]);</div>
+									<div class="text-slate-400"><span class="text-orange-500">return</span> Response::<span class="text-yellow-400">json</span>($users, <span class="text-orange-400">200</span>);</div>
+								</div>
+							)}
+
+							{service.mockType === 'chart' && (
+								<div class="w-full h-full flex items-end justify-between gap-2.5 pt-4">
+									{[40, 75, 55, 95, 80, 100].map((height) => (
+										<div class="w-full bg-slate-800 rounded-t-md group-hover:bg-gradient-to-t group-hover:from-orange-600 group-hover:to-orange-400 transition-all duration-700 ease-out" style={`height: ${height}%`}></div>
+									))}
+								</div>
+							)}
+						</div>
+					</div>
+				))}
+			</div>
+		</section>
+
+		<!-- Metodología de Trabajo -->
+		<section id="metodologia" class="scroll-mt-28 animate-on-scroll">
+			<div class="text-center max-w-3xl mx-auto mb-20">
+				<div class="text-orange-500 font-bold text-xs uppercase tracking-widest mb-3">Método Capitask</div>
+				<h2 class="text-3xl md:text-5xl font-black tracking-tight text-white mb-4">
+					¿Cómo Trabajamos?
+				</h2>
+				<p class="text-slate-400 text-lg">
+					Procesos ágiles estructurados para mitigar riesgos y maximizar el valor del software.
+				</p>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
+				{steps.map((step) => (
+					<div class="glass-card p-8 rounded-3xl relative overflow-hidden group hover:glass-card-hover transition-all duration-300">
+						<span class="text-5xl font-black text-white/5 group-hover:text-orange-500/10 transition-colors absolute top-4 right-4">{step.num}</span>
+						<h3 class="text-xl font-bold mb-3 text-white group-hover:text-orange-400 transition-colors">{step.name}</h3>
+						<p class="text-slate-400 text-sm leading-relaxed">{step.desc}</p>
+					</div>
+				))}
+			</div>
+		</section>
+
+		<!-- Nuestros Proyectos Reales Conectados -->
+		<section id="proyectos" class="scroll-mt-28 animate-on-scroll">
+			<div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
+				<div>
+					<div class="text-orange-500 font-bold text-xs uppercase tracking-widest mb-3">Portafolio</div>
+					<h2 class="text-3xl md:text-5xl font-black tracking-tight text-white mb-4">
+						Nuestros Proyectos
+					</h2>
+					<p class="text-slate-400 text-lg">
+						Explora de forma directa las plataformas web que hemos desarrollado e integrado.
+					</p>
+				</div>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+				{projects.map((project) => (
+					<a href={project.url} target="_blank" rel="noopener noreferrer" class="glass-card p-4 rounded-3xl group relative overflow-hidden flex flex-col hover:glass-card-hover transition-all duration-500 border border-white/5 bg-slate-900/5 cursor-pointer block">
+						<div class="aspect-video rounded-2xl overflow-hidden relative border border-white/5 bg-slate-950/60">
+							<img src={project.image} alt={project.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" />
+							
+							<div class="absolute top-3 right-3 z-30 px-3 py-1 rounded-full bg-slate-900/90 text-slate-300 text-[10px] font-mono border border-white/10 group-hover:border-orange-500/40 transition-colors">
+								{project.url.replace('https://', '').replace('http://', '').split('/')[0]}
+							</div>
+
+							<div class="absolute inset-0 bg-slate-950/80 opacity-0 group-hover:opacity-100 backdrop-blur-md transition-all duration-300 flex flex-col items-center justify-center z-20 p-4">
+								<span class="text-xs text-orange-400 font-mono mb-2">{project.metrics.label}</span>
+								<div class="text-2xl font-bold text-white mb-4">{project.metrics.value}</div>
+								<span class="px-5 py-2.5 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold text-xs rounded-xl shadow-lg">
+									Visitar Sitio ↗
+								</span>
+							</div>
+						</div>
+
+						<div class="p-6 flex-grow flex flex-col justify-between">
+							<div>
+								<span class="text-xs font-semibold text-orange-400 tracking-wider uppercase mb-2 block">
+									{project.category}
+								</span>
+								<h3 class="text-xl font-bold text-white group-hover:text-orange-400 transition-colors mb-3">
+									{project.title}
+								</h3>
+								<p class="text-slate-400 text-sm leading-relaxed mb-6">
+									{project.desc}
+								</p>
+							</div>
+
+							<div class="flex flex-wrap gap-2 pt-4 border-t border-white/5">
+								{project.techs.map(tech => (
+									<span class="text-[10px] px-2.5 py-1 rounded-full bg-white/5 border border-white/5 text-slate-300 font-mono">
+										{tech}
+									</span>
+								))}
+							</div>
+						</div>
+					</a>
+				))}
+			</div>
+		</section>
+
+		<!-- Sección de Testimoniales con Carrusel Deslizable Completo -->
+		<section id="testimonios" class="scroll-mt-28 animate-on-scroll relative overflow-hidden">
+			<div class="text-center max-w-3xl mx-auto mb-16">
+				<div class="text-orange-500 font-bold text-xs uppercase tracking-widest mb-3">Opiniones</div>
+				<h2 class="text-3xl md:text-5xl font-black tracking-tight text-white mb-4">
+					¿Qué dicen nuestros clientes?
+				</h2>
+				<p class="text-slate-400 text-lg">
+					La confianza y satisfacción son nuestro motor diario.
+				</p>
+			</div>
+
+			<!-- Contenedor del Carrusel -->
+			<div class="relative max-w-3xl mx-auto px-12">
+				<div class="overflow-hidden rounded-3xl relative h-[250px] sm:h-[220px]">
+					<div id="carousel-track" class="flex transition-transform duration-500 ease-out h-full">
+						{testimonials.map(t => (
+							<div class="w-full flex-shrink-0 px-2 h-full">
+								<div class="glass-card p-8 rounded-3xl h-full flex flex-col justify-between relative overflow-hidden bg-slate-900/10 border border-white/5">
+									<div class="absolute -top-12 -right-12 w-20 h-20 bg-orange-500/5 rounded-full blur-xl"></div>
+									<p class="text-slate-300 italic leading-relaxed text-sm mb-4">
+										"{t.text}"
+									</p>
+									<div class="flex items-center gap-4">
+										<div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center" set:html={t.avatarSvg}></div>
+										<div>
+											<h4 class="text-xs font-bold text-white">{t.name}</h4>
+											<span class="text-[10px] text-orange-400 font-mono">{t.role}</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+
+				<!-- Controles del Carrusel -->
+				<button id="prev-slide" class="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-slate-900/60 border border-white/10 text-orange-500 flex items-center justify-center hover:bg-orange-500 hover:text-slate-950 transition-colors shadow-lg">
+					←
+				</button>
+				<button id="next-slide" class="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-slate-900/60 border border-white/10 text-orange-500 flex items-center justify-center hover:bg-orange-500 hover:text-slate-950 transition-colors shadow-lg">
+					→
+				</button>
+
+				<!-- Indicadores / Dots -->
+				<div class="flex justify-center gap-2 mt-6">
+					{testimonials.map((_, idx) => (
+						<button class="carousel-dot w-2 h-2 rounded-full bg-white/20 transition-all duration-300" data-index={idx}></button>
+					))}
+				</div>
+			</div>
+		</section>
+
+		<!-- Stack Tecnológico -->
+		<section class="scroll-mt-28 animate-on-scroll">
+			<div class="text-center max-w-3xl mx-auto mb-16">
+				<div class="text-orange-500 font-bold text-xs uppercase tracking-widest mb-3">Tecnologías</div>
+				<h2 class="text-2xl md:text-4xl font-black tracking-tight text-white">
+					Infraestructura & Stack de Especialidad
+				</h2>
+			</div>
+
+			<div class="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
+				{techStack.map(tech => (
+					<span class="px-5 py-2.5 rounded-xl bg-white/5 border border-white/5 text-slate-300 font-mono text-xs hover:border-orange-500/30 hover:bg-orange-500/10 hover:-translate-y-1.5 transition-all duration-300 cursor-default">
+						{tech}
+					</span>
+				))}
+			</div>
+		</section>
+
+		<!-- Preguntas Frecuentes (FAQs) -->
+		<section id="faqs" class="scroll-mt-28 animate-on-scroll">
+			<div class="text-center max-w-3xl mx-auto mb-20">
+				<div class="text-orange-500 font-bold text-xs uppercase tracking-widest mb-3">FAQ</div>
+				<h2 class="text-3xl md:text-5xl font-black tracking-tight text-white mb-4">
+					Preguntas Frecuentes
+				</h2>
+				<p class="text-slate-400 text-lg">
+					Resolvemos tus dudas principales de forma clara.
+				</p>
+			</div>
+
+			<div class="max-w-4xl mx-auto flex flex-col gap-6">
+				{faqs.map(faq => (
+					<div class="glass-card p-8 rounded-2xl border border-white/5 hover:border-orange-500/30 hover:glass-card-hover transition-all duration-300">
+						<h3 class="text-lg font-bold text-white mb-3 flex items-center gap-3">
+							<span class="w-2.5 h-2.5 rounded-full bg-orange-500"></span>
+							{faq.q}
+						</h3>
+						<p class="text-slate-400 text-sm leading-relaxed pl-5.5">
+							{faq.a}
+						</p>
+					</div>
+				))}
+			</div>
+		</section>
+
+		<!-- CTA / Contacto -->
+		<section id="contacto" class="scroll-mt-28 animate-on-scroll">
+			<div class="glass-card rounded-3xl p-8 sm:p-16 text-center relative overflow-hidden border border-orange-500/20 bg-slate-950/50">
+				<div class="absolute -top-24 -left-24 w-72 h-72 bg-orange-600/10 rounded-full blur-[100px] pointer-events-none"></div>
+				<div class="absolute -bottom-24 -right-24 w-72 h-72 bg-orange-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+				
+				<h2 class="text-4xl md:text-6xl font-black text-white mb-6 relative z-10 tracking-tight">
+					Impulsa tu Desarrollo Hoy
+				</h2>
+				<p class="text-slate-300 mb-10 max-w-xl mx-auto relative z-10 leading-relaxed text-base md:text-lg">
+					Cuéntanos tu proyecto técnico o necesidad de automatización. Crearemos un plan estructurado y personalizado para ti.
+				</p>
+				
+				<div class="relative z-10 flex flex-col sm:flex-row justify-center items-center gap-6">
+					<!-- Botón de Correo -->
+					<a href="mailto:capitasksoftwaresolutions@gmail.com" class="btn-shine-container w-full sm:w-auto px-8 py-4 rounded-xl bg-white text-slate-950 font-bold hover:shadow-[0_0_35px_rgba(255,255,255,0.45)] hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" /></svg>
+						<span class="btn-shine-effect">capitasksoftwaresolutions@gmail.com</span>
+					</a>
+					<!-- Botón de WhatsApp -->
+					<a href="https://wa.me/584264348423?text=Hola,%20me%20gustaría%20cotizar%20un%20proyecto%20con%20Capitask." target="_blank" rel="noopener noreferrer" class="btn-shine-container w-full sm:w-auto px-8 py-4 rounded-xl bg-[#25D366] text-slate-950 font-extrabold hover:shadow-[0_0_35px_rgba(37,211,102,0.45)] hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3 cursor-pointer">
+						<svg class="w-5 h-5 fill-slate-950" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008 0c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.863-9.755.002-2.61-1.01-5.063-2.852-6.905C16.64 2.103 14.197.87 11.59.87 6.154.872 1.732 5.24 1.73 10.624c-.001 1.706.452 3.369 1.31 4.837L2.094 21.92l6.553-1.766zM17.15 14.47c-.282-.141-1.666-.822-1.924-.916-.258-.094-.446-.141-.634.141-.188.281-.727.916-.891 1.101-.164.186-.328.207-.61.066-.282-.141-1.19-.439-2.267-1.4a8.342 8.342 0 0 1-1.568-1.95c-.164-.282-.018-.434.123-.574.127-.127.282-.328.423-.492.141-.164.188-.282.282-.47.094-.188.047-.352-.023-.492-.07-.141-.634-1.527-.868-2.09-.228-.549-.46-.474-.634-.482-.164-.007-.352-.007-.54-.007s-.493.07-.751.352c-.258.281-.985.962-.985 2.346 0 1.384 1.008 2.72 1.15 2.907.141.188 1.984 3.03 4.807 4.247.671.29 1.196.463 1.605.593.675.214 1.29.184 1.777.11.542-.082 1.666-.68 1.901-1.336.235-.656.235-1.22.164-1.336-.07-.117-.258-.188-.54-.328z"/></svg>
+						<span class="btn-shine-effect">+58 426 4348423</span>
+					</a>
+				</div>
+			</div>
+		</section>
+
+	</main>
+
+	<!-- Widget de Chatbot Inteligente Premium "CapyBot" -->
+	<div class="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4">
+		<!-- Ventana de Chat (Oculta por defecto) -->
+		<div id="chat-window" class="w-[350px] sm:w-[400px] h-[500px] glass-card rounded-2xl border border-white/10 shadow-2xl flex flex-col overflow-hidden hidden transition-all duration-300 translate-y-4 opacity-0">
+			<!-- Header del Chat -->
+			<div class="bg-slate-900/80 px-4 py-3 border-b border-white/10 flex justify-between items-center">
+				<div class="flex items-center gap-2.5">
+					<div class="w-8 h-8 rounded-full bg-orange-500 flex items-center justify-center text-sm font-bold text-slate-950">
+						🍊
+					</div>
+					<div>
+						<div class="text-xs font-bold text-white">CapyBot</div>
+						<div class="text-[10px] text-emerald-400 flex items-center gap-1">
+							<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Activo
+						</div>
+					</div>
+				</div>
+				<button id="close-chat" class="text-slate-400 hover:text-white transition-colors text-sm">✕</button>
+			</div>
+			<!-- Historial de Mensajes -->
+			<div id="chat-messages" class="flex-grow p-4 overflow-y-auto flex flex-col gap-3 text-xs">
+				<div class="bg-white/5 border border-white/5 rounded-2xl rounded-tl-none p-3 max-w-[85%] text-slate-300">
+					¡Hola! Soy CapyBot, el asistente inteligente de Capitask. ¿En qué puedo ayudarte hoy?
+				</div>
+			</div>
+			<!-- Respuestas Rápidas -->
+			<div class="px-4 py-2 flex flex-wrap gap-1.5 border-t border-white/5 bg-slate-950/20">
+				<button class="quick-reply px-2.5 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 text-[10px] hover:bg-orange-500 hover:text-white transition-all">Cotizar Proyecto</button>
+				<button class="quick-reply px-2.5 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 text-[10px] hover:bg-orange-500 hover:text-white transition-all">Tecnologías</button>
+				<button class="quick-reply px-2.5 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 text-[10px] hover:bg-orange-500 hover:text-white transition-all">¿Quiénes somos?</button>
+			</div>
+			<!-- Input de Mensaje -->
+			<div class="p-3 border-t border-white/10 bg-slate-900/40 flex gap-2">
+				<input id="chat-input" type="text" placeholder="Escribe tu mensaje..." class="flex-grow px-3 py-2 rounded-xl bg-slate-950/60 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-orange-500/40 text-xs" />
+				<button id="send-btn" class="px-4 py-2 bg-orange-500 hover:bg-orange-600 text-slate-950 font-bold rounded-xl text-xs transition-colors">Enviar</button>
+			</div>
+		</div>
+
+		<!-- Botón Flotante del Chat -->
+		<button id="chat-toggle" class="w-14 h-14 rounded-full bg-orange-500 text-slate-900 flex items-center justify-center shadow-[0_0_20px_rgba(249,115,22,0.4)] hover:scale-110 active:scale-95 transition-all duration-300 border border-orange-400 relative">
+			<span class="animate-ping absolute inset-0 rounded-full bg-orange-400/20 opacity-75"></span>
+			<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 stroke-slate-950 fill-none" viewBox="0 0 24 24" stroke-width="2">
+				<path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+			</svg>
+		</button>
+	</div>
+
+	<!-- Lógica JS del Bot Interactivo y del Carrusel de Testimoniales -->
+	<script>
+		// 1. Carusel Logic
+		let currentIndex = 0;
+		const track = document.getElementById('carousel-track');
+		const slides = track ? track.children : [];
+		const totalSlides = slides.length;
+		const dots = document.querySelectorAll('.carousel-dot');
+
+		function updateCarousel(index: number) {
+			if (!track) return;
+			currentIndex = (index + totalSlides) % totalSlides;
+			track.style.transform = `translateX(-${currentIndex * 100}%)`;
+			
+			// Update dots
+			dots.forEach((dot, idx) => {
+				if (idx === currentIndex) {
+					dot.classList.add('bg-orange-500', 'w-4');
+					dot.classList.remove('bg-white/20');
+				} else {
+					dot.classList.remove('bg-orange-500', 'w-4');
+					dot.classList.add('bg-white/20');
+				}
+			});
+		}
+
+		document.getElementById('prev-slide')?.addEventListener('click', () => {
+			updateCarousel(currentIndex - 1);
+		});
+
+		document.getElementById('next-slide')?.addEventListener('click', () => {
+			updateCarousel(currentIndex + 1);
+		});
+
+		dots.forEach(dot => {
+			dot.addEventListener('click', (e) => {
+				const idx = parseInt((e.target as HTMLElement).getAttribute('data-index') || '0');
+				updateCarousel(idx);
+			});
+		});
+
+		// Inicializar carrusel
+		updateCarousel(0);
+
+		// 2. Chatbot Logic
+		const chatToggle = document.getElementById('chat-toggle');
+		const chatWindow = document.getElementById('chat-window');
+		const closeChat = document.getElementById('close-chat');
+		const chatInput = document.getElementById('chat-input') as HTMLInputElement;
+		const sendBtn = document.getElementById('send-btn');
+		const chatMessages = document.getElementById('chat-messages');
+		const quickReplies = document.querySelectorAll('.quick-reply');
+
+		const botResponses: Record<string, string> = {
+			"cotizar proyecto": "¡Excelente! Para cotizar un proyecto, cuéntanos qué necesitas construir (Web, App Móvil o Automatización IA). También puedes agendar directamente en nuestro enlace de Calendly en la sección de contacto.",
+			"tecnologías": "Trabajamos con tecnologías de alta fiabilidad y rendimiento: Laravel, PHP, Vue.js, Nuxt.js, PostgreSQL, MySQL, Supabase, APIs RESTful y maquetación con HTML, CSS, JavaScript y Bootstrap.",
+			"¿quiénes somos?": "Somos Capitask, una compañía de desarrollo de software a medida y automatizaciones con IA enfocada en construir plataformas web robustas y escalables.",
+			"default": "¡Entendido! Si tienes requerimientos específicos de desarrollo, por favor escríbenos directamente a hola@capitask.com o agenda una reunión en la sección inferior de contacto."
+		};
+
+		function toggleChat() {
+			if (chatWindow.classList.contains('hidden')) {
+				chatWindow.classList.remove('hidden');
+				setTimeout(() => {
+					chatWindow.classList.remove('translate-y-4', 'opacity-0');
+				}, 50);
+			} else {
+				chatWindow.classList.add('translate-y-4', 'opacity-0');
+				setTimeout(() => {
+					chatWindow.classList.add('hidden');
+				}, 300);
+			}
+		}
+
+		function appendMessage(text: string, isUser: boolean) {
+			const messageDiv = document.createElement('div');
+			if (isUser) {
+				messageDiv.className = "bg-orange-500 text-slate-950 font-semibold rounded-2xl rounded-tr-none p-3 max-w-[85%] self-end";
+			} else {
+				messageDiv.className = "bg-white/5 border border-white/5 rounded-2xl rounded-tl-none p-3 max-w-[85%] text-slate-300";
+			}
+			messageDiv.textContent = text;
+			chatMessages.appendChild(messageDiv);
+			chatMessages.scrollTop = chatMessages.scrollHeight;
+		}
+
+		function handleSend(text: string) {
+			if (!text.trim()) return;
+			appendMessage(text, true);
+
+			// Generar respuesta del bot simulada
+			setTimeout(() => {
+				const query = text.toLowerCase().trim();
+				let response = botResponses.default;
+				
+				for (const key in botResponses) {
+					if (query.includes(key)) {
+						response = botResponses[key];
+						break;
+					}
+				}
+				appendMessage(response, false);
+			}, 600);
+		}
+
+		chatToggle.addEventListener('click', toggleChat);
+		closeChat.addEventListener('click', toggleChat);
+		
+		sendBtn.addEventListener('click', () => {
+			handleSend(chatInput.value);
+			chatInput.value = '';
+		});
+
+		chatInput.addEventListener('keypress', (e) => {
+			if (e.key === 'Enter') {
+				handleSend(chatInput.value);
+				chatInput.value = '';
+			}
+		});
+
+		quickReplies.forEach(btn => {
+			btn.addEventListener('click', () => {
+				handleSend(btn.textContent || '');
+			});
+		});
+	</script>
+
+	<!-- Footer -->
+	<footer class="border-t border-white/5 py-16 bg-slate-950/80 backdrop-blur-md">
+		<div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+			<div class="flex items-center gap-3">
+				<img src="/logoss.png" alt="Capitask Logo" class="h-12 w-auto object-contain" />
+			</div>
+			<div class="flex gap-8 text-sm text-slate-400">
+				<a href="#" class="hover:text-orange-400 transition-colors">Privacidad</a>
+				<a href="#" class="hover:text-orange-400 transition-colors">Términos de Servicio</a>
+				<a href="#" class="hover:text-orange-400 transition-colors">Contacto</a>
+			</div>
+		</div>
+	</footer>
+</Layout>
